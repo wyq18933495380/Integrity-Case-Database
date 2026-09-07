@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纪检监察创新班 · 廉政案例库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", system-ui, -apple-system, sans-serif;
+        }
+        :root {
+            --primary: #8b0000;
+            --primary-light: #b82626;
+            --secondary: #233142;
+            --accent: #30475e;
+            --light-bg: #f7f8fa;
+            --card-bg: #ffffff;
+            --border-color: #e2e5ea;
+            --text-normal: #333842;
+            --text-soft: #6b7280;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.09);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-normal);
+            line-height: 1.8;
+        }
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 16px 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 1rem;
+            opacity: 0.92;
+            transition: all 0.24s ease;
+        }
+        nav a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+        }
+        .banner {
+            background: linear-gradient(145deg, #600000, #a01c1c);
+            color: #fff;
+            padding: 70px 2rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+        .banner h1 {
+            font-size: 2.4rem;
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+        .banner p {
+            font-size: 1.1rem;
+            max-width: 840px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height:1.9;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px,1fr));
+            gap: 24px;
+            margin-bottom: 3rem;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 12px;
+            font-size:1.22rem;
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.84rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-right:8px;
+            margin-bottom:8px;
+        }
+        .tag.traditional {background:#e8f1fc;color:#004799;}
+        .tag.red {background:#ffe8e8;color:#a80000;}
+        .tag.newera {background:#e8f8e8;color:#006622;}
+        .form-wrap {
+            background: var(--card-bg);
+            padding: 28px 32px;
+            border-radius: var(--radius-md);
+            border:1px solid var(--border-color);
+            margin-bottom:2.2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .form-item {
+            margin-bottom:18px;
+        }
+        label {
+            display:block;
+            margin-bottom:6px;
+            font-weight:550;
+            color:var(--secondary);
+        }
+        input,textarea,select {
+            width:100%;
+            padding:12px 14px;
+            border:1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size:1rem;
+            background:#fff;
+            transition:border 0.2s;
+        }
+        input:focus,textarea:focus,select:focus{
+            outline:none;
+            border-color:var(--primary-light);
+        }
+        textarea {
+            min-height:130px;
+            resize:vertical;
+        }
+        button {
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            color:white;
+            border:none;
+            padding:12px 24px;
+            border-radius: var(--radius-sm);
+            cursor:pointer;
+            font-size:1rem;
+            margin:6px 4px;
+            transition:opacity 0.22s;
+        }
+        button:hover {
+            opacity:0.92;
+        }
+        button.secondary{
+            background:#506078;
+        }
+        button.warn{
+            background:#c26000;
+        }
+        button.success{
+            background:#007733;
+        }
+        .detail-block {
+            background:#fff;
+            padding:30px 34px;
+            border-radius: var(--radius-md);
+            border:1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+        .hidden {
+            display:none !important;
+        }
+        .log-item {
+            padding:10px 0;
+            border-bottom:1px dashed #d8dbe2;
+            color:var(--text-soft);
+        }
+        footer {
+            text-align:center;
+            padding:40px;
+            color:var(--text-soft);
+            font-size:0.95rem;
+            margin-top:5rem;
+        }
+        .page {
+            display:none;
+        }
+        .page.active {
+            display:block;
+        }
+        .filter-bar {
+            background:#fff;
+            padding:20px 24px;
+            border-radius: var(--radius-md);
+            margin-bottom:22px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:16px;
+            align-items:center;
+            border:1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+        .filter-bar label{
+            margin-bottom:0;
+            margin-right:6px;
+        }
+        .knowledge-block{
+            background:#f3f5f8;
+            padding:16px;
+            border-radius:var(--radius-sm);
+            margin:12px 0;
+        }
+        .knowledge-block h4{
+            color:var(--primary);
+            margin-bottom:6px;
+        }
+        .tip-notice{
+            background:#fff3cd;
+            border:1px solid #ffeeba;
+            padding:12px;
+            border-radius:8px;
+            color:#856404;
+            margin-bottom:16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-wrap">
+            <div class="nav-title">廉政案例库</div>
+            <nav>
+                <a href="#home" data-page="page-home">首页</a>
+                <a href="#case" data-page="page-case">核心案例库</a>
+                <a href="#study" data-page="page-study">学习研讨专区</a>
+                <a href="#submit" data-page="page-submit">案例投稿专区</a>
+                <a href="#about" data-page="page-about">关于本站</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="page-home" class="page active">
+            <div class="banner">
+                <h1>汲中华廉洁文脉 铸纪检初心底色</h1>
+                <p>收录核实后的中华廉洁文化纪检典型案例，附原创点评，持续更新，服务廉洁文化建设与纪检监察学习。</p>
+            </div>
+
+            <div class="section-title">建站初衷</div>
+            <div class="card">
+                <p style="font-size:1.05rem;">本案例库用于《纪检监察案例读本》素材储备、学院廉洁文化建设。案例均要求史料溯源核实，拒绝演义小说内容。所有人均可提交案例，提交后直接进入核心案例库共享查阅。</p>
+            </div>
+
+            <div style="margin-top:3rem;"></div>
+            <div class="section-title">快速访问</div>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>核心案例库</h3>
+                    <p>完整案例集合，支持分类筛选、关键词检索，浏览全部入库案例</p>
+                    <br>
+                    <button onclick="switchPage('page-case')">前往案例库</button>
+                </div>
+                <div class="card">
+                    <h3>案例投稿提交</h3>
+                    <p>填写廉洁案例素材，提交直接入库，所有人可共享查看</p>
+                    <br>
+                    <button onclick="switchPage('page-submit')">提交案例</button>
+                </div>
+                <div class="card">
+                    <h3>学习研讨专区</h3>
+                    <p>纪检监察知识库、读本编纂进度、个人学习笔记记录，发表想法交流讨论</p>
+                    <br>
+                    <button onclick="switchPage('page-study')">进入学习专区</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-case" class="page">
+            <h2 class="section-title">核心案例库</h2>
+            <div class="filter-bar">
+                <div>
+                    <label>文化来源分类：</label>
+                    <select id="filter-source">
+                        <option value="all">全部</option>
+                        <option value="传统廉洁典故">中华传统廉洁典故案例</option>
+                        <option value="近现代红色">近现代红色廉洁案例</option>
+                        <option value="新时代典型">新时代纪检廉洁典型案例</option>
+                    </select>
+                </div>
+                <div>
+                    <label>呈现形式：</label>
+                    <select id="filter-format">
+                        <option value="all">全部</option>
+                        <option value="文字原创">文字原创案例</option>
+                        <option value="音频解读">音频解读案例</option>
+                        <option value="视频宣讲">视频宣讲案例</option>
+                        <option value="其他">其他形式案例</option>
+                    </select>
+                </div>
+                <div>
+                    <label>关键词搜索：</label>
+                    <input type="text" id="search-input" placeholder="标题、关键词检索">
+                </div>
+            </div>
+            <div id="case-list" class="card-grid"></div>
+            <div id="case-detail" class="hidden">
+                <div class="detail-block">
+                    <button class="secondary" onclick="closeCaseDetail()">← 返回列表</button>
+                    <button class="success" onclick="copyCurrentCase()">📋复制本条案例</button>
+                    <div id="detail-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-study" class="page">
+            <h2 class="section-title">学习研讨专区</h2>
+            <div class="card-grid">
+                <div class="card" style="grid-column: 1 / -1;">
+                    <h3>📖廉洁文化与纪检监察知识库</h3>
+                    <div id="knowledge-content">
+                        <div class="knowledge-block">
+                            <h4>【读本编纂进度】</h4>
+                            <p>持续收集核实传统、红色、新时代廉洁案例，为《纪检监察案例读本》积累原始素材。本库由班级共建，所有同学提交的案例直接入库共享。</p>
+                        </div>
+                        <div class="knowledge-block">
+                            <h4>🔍什么是慎独</h4>
+                            <p>慎独是中华传统修身理念，指在独处无人监督之时，依然恪守道德纪律，不做亏心之事。是纪检监察干部思想修养的重要内容，杨震“四知拒金”就是慎独精神的典型体现。</p>
+                        </div>
+                        <div class="knowledge-block">
+                            <h4>📜中央苏区工农检察制度</h4>
+                            <p>中华苏维埃时期设立工农检察人民委员部，是我们党早期纪检监察机构。依靠控告局、工农通讯员、突击队开展监督，开启人民群众参与监督的制度实践，阮啸仙主持中央审计委员会，公开审计报告，向贪污浪费亮剑。</p>
+                        </div>
+                        <div class="knowledge-block">
+                            <h4>⚖️监督执纪“四种形态”</h4>
+                            <p>经常开展批评和自我批评、约谈函询，让“红红脸、出出汗”成为常态；党纪轻处分、组织调整成为违纪处理的大多数；党纪重处分、重大职务调整的成为少数；严重违纪涉嫌违法立案审查的成为极少数。抓早抓小，防微杜渐。</p>
+                        </div>
+                        <div class="knowledge-block">
+                            <h4>🏛️“三重一大”制度</h4>
+                            <p>重大事项决策、重要干部任免、重大项目安排、大额度资金使用，必须经领导班子集体讨论作出决定，防止个人专断，是权力监督的重要制度。</p>
+                        </div>
+                        <div class="knowledge-block">
+                            <h4>📄《关于加强新时代廉洁文化建设的意见》</h4>
+                            <p>党内重要文件，提出要挖掘中华优秀传统廉洁文化、革命红色廉洁文化、社会主义先进廉洁文化，实现以文化人、以廉润心，一体推进不敢腐、不能腐、不想腐。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>✍个人研讨笔记</h3>
+                    <p>围绕入库案例开展延伸思考，记录你的学习感悟，保存在本地浏览器。</p>
+                    <textarea id="study-note" placeholder="在此记录你的研讨思考..."></textarea>
+                    <br><br>
+                    <button onclick="saveStudyNote()">保存笔记</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-submit" class="page">
+            <h2 class="section-title">案例投稿专区</h2>
+            <div class="card">
+                <h3>案例更新公示</h3>
+                <div id="update-log"></div>
+            </div>
+
+            <div style="margin-top:2rem;"></div>
+            <div class="form-wrap">
+                <div class="tip-notice">
+                    ⚠️提示：提交的数据<strong>仅保存在当前浏览器本地</strong>，不会自动同步给除了你以外的其他人，需通过修改代码来录入，后续管理员将加入后端技术（Vercel、Firebase），完善该网站（管理员还没有学会这个🥹请浏览该网站的友友多多包容，有空马上学！）
+                </div>
+                <h3>提交你的廉洁案例（提交直接进入核心案例库）</h3>
+                <div class="form-item">
+                    <label>撰稿人（姓名）</label>
+                    <input type="text" id="form-author" placeholder="填写案例搜集撰写同学姓名">
+                </div>
+                <div class="form-item">
+                    <label>案例标题</label>
+                    <input type="text" id="form-title">
+                </div>
+                <div class="form-item">
+                    <label>文化来源分类</label>
+                    <select id="form-source">
+                        <option value="传统廉洁典故">中华传统廉洁典故案例</option>
+                        <option value="近现代红色">近现代红色廉洁案例</option>
+                        <option value="新时代典型">新时代纪检廉洁典型案例</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label>呈现形式</label>
+                    <select id="form-format">
+                        <option value="文字原创">文字原创案例</option>
+                        <option value="音频解读">音频解读案例</option>
+                        <option value="视频宣讲">视频宣讲案例</option>
+                        <option value="其他">其他形式案例</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label>史料/素材核实说明（出处）</label>
+                    <textarea id="form-source-note"></textarea>
+                </div>
+                <div class="form-item">
+                    <label>案例正文（事件梗概）</label>
+                    <textarea id="form-content"></textarea>
+                </div>
+                <div class="form-item">
+                    <label>个人点评与深度见解</label>
+                    <textarea id="form-comment"></textarea>
+                </div>
+                <div class="form-item">
+                    <label>纪检监察现实启示</label>
+                    <textarea id="form-revelation"></textarea>
+                </div>
+                <button onclick="submitCase()">提交案例，直接入库</button>
+            </div>
+        </div>
+
+        <div id="page-about" class="page">
+            <h2 class="section-title">关于本站</h2>
+            <div class="card">
+                <h3>建站目的</h3>
+                <p>服务《纪检监察案例读本》编纂、学院廉洁文化建设、纪检监察方向学生学习实践。</p>
+                <br>
+                <h3>创作说明</h3>
+                <p>所有案例核实溯源、原创改写、附带个人点评，杜绝照搬抄袭。本案例库收集中国传统文化中的廉洁、监察相关真实史料案例。案例必须核实史料来源，禁止戏曲、小说演义故事。每条案例需要包含：史料出处、事件梗概、个人评析、现实启示。<strong>提交案例直接存入核心案例库，仅保存在本机浏览器。</strong></p>
+                <br>
+                <h3>成果汇总</h3>
+                <div id="stat-info"></div>
+                <br>
+                <h3>📦 数据工具区</h3>
+                <p>⚠️重置按钮会覆盖现有案例，谨慎操作；建议经常导出备份，防止清除缓存丢失数据。</p>
+                <div>
+                    <button class="warn" onclick="resetDefaultCases()">重置为内置11条默认案例</button>
+                    <button class="success" onclick="exportAllTxt()">导出全部案例 TXT（读本素材）</button>
+                    <button onclick="exportBackupJson()">导出完整备份 JSON</button>
+                    <input type="file" id="import-file" accept=".json" style="margin:8px 0;">
+                    <button onclick="importBackupJson()">导入JSON备份文件</button>
+                </div>
+                <br>
+                <h3>网站创作者</h3>
+                <p>25法学（纪检监察创新班）吴逸淇</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>廉政案例库｜创作者/管理员：吴逸淇</p>
+    </footer>
+
+<script>
+const STORAGE_KEY = {
+    official:"case_official",
+    updateLog:"case_update_log",
+    studyNote:"study_note"
+};
+
+let currentViewCase = null;
+
+function getTodayStr(){
+    const d=new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+// 完整11条预置案例数组
+function getDefaultCaseArray(){
+    return [
+            {
+                id:Date.now()+1,
+                title:"子罕以“不贪为宝”拒玉",
+                sourceType:"传统廉洁典故",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：《左传》相关记载，春秋宋国史实。",
+                content:"春秋时，宋国司城子罕掌管工程营造。有位乡人得到一块璞玉，自忖匹夫藏宝易招祸患，便前往献与子罕。子罕坚决不受。献玉者忙说已请玉工鉴定，确是价值连城之物。子罕答道：“您以玉为宝，我以不贪为宝。若我收了，您失了宝，我也失了宝，不如各自守住自己的宝。”献玉者既惭愧又敬佩。后来子罕帮他将玉卖出，使其得以安度晚年。",
+                comment:"子罕拒收献玉者璞玉，理由是“您以玉为宝，我以不贪为宝，若收下，双方都失宝”，说明子罕不是因价值高低或是否构成交易才拒绝，而是从根本否定公职人员接受贵重物品的正当性，体现了完全内化的廉洁自觉。这提醒我们制度再严密也有缝隙，真正的防线是公职人员对公权私利边界的敬畏。个人认为，子罕最难得之处是将“不贪”视为拥有而非牺牲——现代语境下，不少人将廉洁理解为“放弃应得之利”，因而心有不甘，但子罕却清晰地认定，守住清白本身就是拥有了无价之宝，这种认知转换具有深刻的哲学意味。其行为表明监督的最高形态是自我监督——无人时仍能守住底线，这才是廉政的最高境界。同时，子罕拒玉后帮献玉者卖出玉石、使其安度晚年，既规避了代管风险，又兼顾了人情温度，说明廉洁不等于冷漠，拒收不等于不作为。",
+                revelation:"今日反腐在完善制度之外，尤需唤醒公职人员内在尊严，让清廉成为一种从容自守。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+2,
+                title:"杨震“四知拒金”守清白",
+                sourceType:"传统廉洁典故",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：《后汉书·杨震列传》，东汉正史记载。",
+                content:"东汉杨震，弘农华阴人，以学问品行称著，时誉“关西孔子”。赴东莱太守任，途经昌邑，县令王密乃其所举秀才。密感提携之恩，夜怀十金，前往驿馆拜见，以为暮夜无人知晓。杨震正色曰：“吾知君，君不知吾，何也？”密虑其畏人言，劝曰：“暮夜无知。”震厉声驳道：“天知、神知、我知、子知，何谓无知！”密惭而退。后震官至太尉，始终清白自守，子孙以“清白吏”为训，临终戒厚葬。此“四知”之语，垂范后世，足见古人慎独持廉之风。",
+                comment:"杨震拒金比子罕拒玉更突出对“隐秘空间”的警觉。王密选择深夜私赠，十金也非薄礼，带有典型的试探性。杨震的“四知”将监督从外在法规延伸至内心良知，尤其“我知”“子知”两层，指出行贿者与受贿者都清楚此为非义之举，双方良心无可逃避，这种内省意识正是“不想腐”的最高防线。现代廉政教育常强调制度的刚性，但杨震的案例提醒我们，必须同时注重培育公职人员对耻辱感和荣誉感的敏感度——当一个人觉得收受财物是“对不起自己的良知”而非“害怕被发现”，他才是真正安全的。个人认为，杨震的“四知”中最具力量的是“我知”二字。外部监督再严密也覆盖不了每个独处瞬间，真正的廉洁来自个人对自己无法欺骗的事实。杨震用“你我皆知不义”唤起王密的羞耻心，而非单纯以律法恐吓，这种以德化人的方式比制度惩戒更持久，也更有尊严。",
+                revelation:"外部监督无法覆盖全部独处场景，要重视慎独教育，培育公职人员内在良知与荣辱感，筑牢不想腐的思想根基。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+3,
+                title:"羊续悬鱼明志拒馈赠",
+                sourceType:"传统廉洁典故",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：《后汉书·羊续传》，东汉末年正史。",
+                content:"东汉末年，南阳郡吏治腐败，官员收礼成风。朝廷任命羊续为南阳太守，期望扭转局面。到任后，豪强与下属纷纷借送礼试探，府丞焦俭尤为殷勤，特意买了一条大白鱼送至府上，声称只是“尝鲜”而已。羊续收下鱼，并未食用，而是让人悬挂在庭院屋檐下，任其风干。不久焦俭又提鱼前来，羊续指着檐下干鱼道：“上次所赠尚在，今后不必再送。”焦俭满面羞愧，只好离去。此事传遍南阳，送礼者自此敛迹。羊续任内吏治明显好转，死后家无余财，连棺材都由朝廷赐给。“悬鱼”遂成为后世为官清廉、拒收贿赂的著名典故。",
+                comment:"羊续“悬鱼”比子罕拒玉、杨震拒金多了一层公开警示的意味。他没有当面退回，也没有严厉驳斥，而是将收下的鱼悬之于众，让每一个来访者都能看见。这种做法既给对方留了体面，又用实物宣告了自己的立场，形成了一种“不言之教”的震慑。在现代监督实务中，这种“以物示警”的手法具有操作启示：对于初次试探、金额不大或披着人情外衣的馈赠，公职人员可通过登记公开、实物公示等方式，将私人行为转化为公共信息，既切断后续利益链，又避免直接冲突。个人以为，羊续最有智慧的地方在于他没有把清廉变成一场道德审判，而是用一条风干的鱼作为沉默而持久的告示。廉洁不仅需要内心的坚决，也需要可见的证据，悬鱼的威慑力恰恰来自它天天挂在檐下，比任何口头表态都更有说服力。",
+                revelation:"廉政建设不仅靠教育感化和制度约束，也要善于利用“可视化”手段，让清正廉洁看得见、摸得着，形成现实震慑。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+4,
+                title:"包拯家训立规诫子孙",
+                sourceType:"传统廉洁典故",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：《宋史·包拯传》，包氏石刻家训。",
+                content:"北宋名臣包拯以铁面无私著称，晚年虽位至枢密副使，生活却始终简朴。他担心子孙不能继承清正之风，更忧心自己一生弹劾权贵，若子孙犯贪，必将辱没门风，甚至招致祸患。于是他在堂屋东壁立下石刻家训，训词大意是：后世子孙为官，若犯贪污之罪，生不得归家，死不得葬入祖茔；不遵此训，即非包氏子孙。他还将碑文拓印分发各房，命子孙时时诵读。此举震慑朝中贪官，也为家族划下不可逾越的红线。包拯去世后，其子包绶、孙包永年皆谨守祖训，为官以廉洁著称。这条家训历来被传颂，成为家庭反腐教育的典范，其制度化自我约束的精神，对后世仍有借鉴意义。",
+                comment:"包拯家训的独特价值在于他将廉洁从个人操守上升为家族存废的制度性红线。他没有仅靠口头教诲，而是用石刻固定、拓印分发、定期诵读的方式，把拒腐从“自觉”变成了“必须”，并设置了极其严厉的终极后果——逐出家族、不得归葬。这种自我强制的外部化手段，相当于为家族立了一套内部“纪律条例”，在缺乏现代监督机制的古代，有效实现了跨代际的廉洁传承，其制度思维对今日廉政建设仍有启发。个人认为，包拯最可贵之处在于他敢于以整个家族的荣誉和归宿为自己的政治品格做担保。他深知自己得罪人太多，一旦后人失节，不仅自身难保，整个家族都可能遭到报复，因此他不把廉洁寄托于后人的自觉，而是用不可撤销的惩罚来兜底。这种“提前划定不可逾越底线”的决绝，比任何事后追责都更根本。",
+                revelation:"廉政建设既要重视教育和激励，也要设置明确可执行的负面后果，重视家风家教，筑牢家庭防腐防线。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+5,
+                title:"海瑞备棺死谏惩贪腐",
+                sourceType:"传统廉洁典故",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：《明史·海瑞传》，明代正史。",
+                content:"明朝嘉靖年间，海瑞任户部主事，见皇帝沉迷道教、不理朝政，官员贪腐成风，民不聊生，遂决心冒死进谏。他写下著名的《治安疏》，直斥朝政弊端，同时提前买好棺材，安顿家人，以示必死之志。奏疏呈上，嘉靖皇帝震怒，将其下狱，但念其忠心，未予处死。隆庆即位后，海瑞获释并受重用，历任应天巡抚等职，推行“一条鞭法”，清查土地，严惩贪官豪强，甚至迫使退休宰相徐阶退田，执法不徇私情。而他自己一生布衣蔬食，死后家中几无余财，连丧葬费用都由同僚凑集。海瑞备棺上疏的壮举，是以生命向腐败制度宣战的极端表现，彰显了古代士大夫“文死谏”的刚烈风骨，对纪检监察干部不畏权势、敢于斗争的精神亦有启发。",
+                comment:"海瑞与前面几位清官有本质不同。子罕、杨震、羊续是“拒贿”，包拯是“立规”，而海瑞是“向制度本身开战”。他备棺上疏，不是针对某一个贪官，而是直指最高权力的怠政和整个官场的腐败生态，将个人生死完全置之度外。这种“以死破局”的极端方式，对纪检监察工作的启示在于：真正的监督必须有直面强权的勇气，不因对象位高权重而退缩。同时，他执法时不因徐阶是退休宰相、曾有恩于朝就网开一面，体现了监督的公平性和刚性，这对破除“人情网”“关系网”具有现实参照意义。个人认为，海瑞最震撼之处不在于他的清廉，而在于他将“责任”置于“生存”之上。前面的清官守住的是自己的“宝”，而海瑞要砸碎的是整个“不公的局”，为此不惜牺牲自己。这在今天当然不提倡盲目牺牲，但那种“畏惧权势就不配履职”的职业信念，恰恰是纪检监察干部最需要的精神底色。不过也需要指出，海瑞的刚烈虽可敬，但现代纪检监察更依赖制度性、常态化的监督机制，而非一时一人的壮烈之举，二者结合才更可持续。",
+                revelation:"纪检监察工作需要敢于斗争、不徇私情的勇气，但更要依靠常态化制度监督，实现长效治理。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+6,
+                title:"于成龙“天下廉吏第一”的宦海生涯",
+                sourceType:"传统廉洁典故",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：《清史稿·于成龙传》，清代正史。",
+                content:"清初名臣于成龙，四十五岁出仕，首任广西罗城知县。该地偏远穷困，县衙破败，盗贼横行。到任后，他与百姓同甘共苦，常以俸禄接济贫民，生活极为俭朴，常年以青菜糙米为食，极少吃肉，被当地人戏称“于青菜”。此后历任多地，始终布衣布鞋，自奉俭约。黄州饥荒时，他卖掉坐骑换粮赈灾，自己步行办公。官至两江总督，临终时部下打开其箱箧，仅见旧袍一件、粗盐几罐、米面少许。消息传出，江南百姓罢市痛哭送葬。于成龙一生以俭朴践行廉洁，其身体力行的事迹，为“俭以养廉”提供了生动注解。",
+                comment:"于成龙的独特之处在于他将“俭”作为廉洁的根基，而非仅仅拒绝贿赂。于成龙以近乎苦行的生活主动压缩个人欲望，从源头消解了被腐蚀的可能。他出身贫寒、晚年位高权重却始终如一，说明这种俭朴不是条件所迫，而是一种自觉的操守训练。对现代公职人员而言，保持艰苦朴素的作风不只是美德，更是一种心理防御机制——欲望越低，被围猎的突破口就越少。个人认为，于成龙“于青菜”的称号比任何碑铭都更有说服力，因为它是百姓根据日常观察赋予的，而非官方表彰。他卖马赈灾、步行办公的细节也表明，廉洁不是孤立的道德表演，而是与勤政、爱民紧密结合的完整人格。",
+                revelation:"纪检监察工作不仅要查处贪腐，也要倡导艰苦朴素的生活方式与职业价值观，推动俭以养廉落地为日常实践。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+7,
+                title:"阮啸仙：中央苏区审计反腐的开拓者",
+                sourceType:"近现代红色",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：中央纪委国家监委网站、中央苏区史料档案。",
+                content:"阮啸仙是我党早期纪检监察领导人，中央审计委员会首任主任。土地革命时期，苏区内部出现部分干部贪污、浪费公款的现象。阮啸仙主持审计工作，敢于直面问题，把审计报告公开发表在《红色中华》报，主动向全社会晒出审计发现的漏洞。在他推动下，29名贪污分子被移交法庭审判，推动苏区机关每月节约经费二十余万元。他坚持审计公开，发动工农群众参与监督，为革命根据地筑牢财经纪律防线。阮啸仙生活简朴，不谋私利，将全部精力投入肃贪反腐，为人民监察事业留下宝贵实践经验。",
+                comment:"阮啸仙的可贵，在于将审计监督与群众监督结合，把审计结果公开，打破“内部处理”的封闭思维。在革命战争物资极度匮乏的环境，反腐不是可有可无，而是维系政权民心的生命线。很多人以为战争年代首要任务是打仗，但阮啸仙用实践证明，纪律松弛、贪污浪费会直接消耗革命根基。个人点评：公开是最好的防腐剂，早在苏区时期我们党就已经懂得用公开审计、媒体公示强化监督，这套思路对当代政务公开、审计监督仍极具借鉴意义。",
+                revelation:"纪检监察工作要善于用好审计监督，坚持信息公开，依靠群众力量，实现对权力运行全过程约束。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+8,
+                title:"肖玉璧案：纪律面前人人平等的苏区镜鉴",
+                sourceType:"近现代红色",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：延安时期档案、中央纪委国家监委专题史料。",
+                content:"肖玉璧曾经是红军战斗英雄，身上有九十多处伤疤，为革命立下战功。到陕甘宁边区后，被安排担任地方贸易局干部。居功自傲的他利用职权贪污受贿、倒卖边区紧缺物资，生活腐化。案发之后，不少干部念及他过去的战功，希望可以从轻处理。但是毛泽东明确表态：功是功，过是过，战功不能成为贪腐的护身符。1941年肖玉璧被依法判处死刑。该案震动整个陕甘宁边区，树立起“纪律面前没有特殊党员，功臣不能免于处罚”的鲜明导向。",
+                comment:"肖玉璧案是党史上极具标志性的纪律案例。它厘清了一个关键原则：历史功绩不能抵消违纪违法责任。现实当中，部分干部会拿过去的贡献当作特权资本，认为自己有功就可以搞特殊。肖玉璧案启示，纪检监察坚持纪法平等，不会因为资历、功劳就网开一面。个人见解：优待功臣是组织关怀，但绝不是突破纪律红线的借口，这一原则历经百年至今仍然适用。",
+                revelation:"纪律和法律面前一律平等，任何人无论功绩大小、资历深浅，触犯纪法都必须受到追究。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+9,
+                title:"周恩来总理十条家规，严守家风廉洁底线",
+                sourceType:"近现代红色",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：周恩来纪念馆公开史料。",
+                content:"周恩来总理身居高位，却对亲属立下十条家规：晚辈不准丢下工作专程进京看望他；来者一律住国务院招待所；一律到食堂排队买饭菜，有工作的自己出钱，没有工作的由总理代付伙食费；不许请客送礼；不许动用公家汽车；凡个人生活上的事情一律自己动手，不要别人代办；生活要艰苦朴素；在任何场合都不要说出与总理的关系，不要炫耀；不谋私利，不搞特殊化。周恩来坚决拒绝亲属利用他的权力谋取任何便利，严格把家风纪律落到日常生活点滴。",
+                comment:"红色廉洁文化不止是拒贿拒礼的大事，更体现在家风家教的细微之处。权力很容易被亲属借用，家风失守是腐败重要诱因。周恩来十条家规，没有宏大口号，全部是具体可执行生活准则。个人见解：高级领导干部的家风不是个人私事，而是政治责任，管好家人亲属，本身就是公职人员廉洁履职重要一环。",
+                revelation:"新时代全面从严治党高度重视家风建设，党员干部必须管好家人、管好身边人，防止“裙带腐败”。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+10,
+                title:"人民樵夫廖俊波：廉洁奉公的基层县委书记",
+                sourceType:"新时代典型",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：中央纪委国家监委网站先进典型报道。",
+                content:"廖俊波同志曾任福建多地主官，被称为“人民的樵夫”。他长期在基层攻坚克难，一心推动地方脱贫发展。手中掌握大量项目、人事资源，却始终守住廉洁底线。有企业老板想要送礼、宴请，都被他坚决回绝。他常说，自己是为老百姓服务的。面对亲友请托办事，廖俊波一律按制度规矩办理，绝不搞人情通融。他生活简朴，对家人严格约束，从不利用职权为亲友捞好处，把全部心思放在地方发展和群众疾苦上，是新时代基层干部廉洁奉公的榜样。",
+                comment:"廖俊波的廉洁，不是远离权力，而是手握权力却始终站稳人民立场。很多基层干部面临大量企业、熟人、亲友的人情围猎。廖俊波启示我们，廉洁不等于不干事，恰恰要在干事创业的同时守住纪律。个人见解：新时代好干部标准，既要敢于担当实干，又要清正廉洁，二者不可偏废。只干事不守廉，权力就容易异化；只守廉不担当，就成了不作为。",
+                revelation:"新时代公职人员应当做到“既敢干事，又不出事”，在担当作为的同时筑牢廉洁防线，自觉抵御人情围猎。",
+                createTime:getTodayStr()
+            },
+            {
+                id:Date.now()+11,
+                title:"纪检干部张明年：铁规办案，坚守执纪者本色",
+                sourceType:"新时代典型",
+                format:"文字原创",
+                author:"预置示例",
+                sourceNote:"史料出处：中央纪委国家监委网站先进人物纪实。",
+                content:"安徽省庐江县纪委监委张明年从事纪检监察工作三十四年，给自己定下三条铁规：不接受涉案对象吃请、不收受任何礼品礼金、不为熟人案件说情打招呼。多年间他牵头核查线索九百六十余件，敢于啃硬骨头，查办多起国企、重点领域腐败案件。办理国企“小金库”案件时，面对多方人情压力，他顶住干扰，逐笔核对票据，固定完整证据，推动案件顺利查办。对待亲友说情打招呼，他一律拒绝，严守执纪审查纪律，做到秉公执纪。",
+                comment:"“执纪者必先守纪，律人者必先律己”。纪检监察干部手握监督执纪权力，本身也面临腐蚀风险。张明年给自己定下三条铁规，是自我约束、自我监督的生动实践。个人见解：纪检监察人员不是天然具备免疫力，必须主动给自己划红线，把外部纪律转化成内心铁规，才能做到打铁必须自身硬。",
+                revelation:"纪检监察队伍建设要坚持刀刃向内，监督别人的同时强化自我约束，做到忠诚干净担当。",
+                createTime:getTodayStr()
+            }
+        ];
+}
+
+// 重置预置案例
+function resetDefaultCases(){
+    if(!confirm("确认重置！会丢失你自己新增的全部案例，恢复系统内置11条案例，确定继续吗？")){
+        return;
+    }
+    const arr = getDefaultCaseArray();
+    localStorage.setItem(STORAGE_KEY.official, JSON.stringify(arr));
+    alert("已完成重置！请刷新页面，内置11条案例加载完成！");
+    window.location.reload();
+}
+
+// 导出全部案例TXT，用于读本
+function exportAllTxt(){
+    const list = getArr(STORAGE_KEY.official);
+    let text = "====================纪检监察创新班廉政案例库====================\r\n";
+    list.forEach((item,idx)=>{
+        text += `\r\n【案例${idx+1}】${item.title}\r\n`;
+        text += `撰稿人：${item.author||"未填写"}\r\n`;
+        text += `分类：${item.sourceType}｜形式：${item.format}｜收录时间：${item.createTime}\r\n`;
+        text += `史料核实说明：${item.sourceNote}\r\n`;
+        text += `————案例正文————\r\n${item.content}\r\n`;
+        text += `————个人点评与深度见解————\r\n${item.comment}\r\n`;
+        text += `————纪检监察现实启示————\r\n${item.revelation}\r\n`;
+        text += "--------------------------------------------------------\r\n";
+    });
+    downloadFile(text,"廉政案例库_全部案例.txt","text/plain");
+}
+
+// 复制当前打开的案例
+function copyCurrentCase(){
+    if(!currentViewCase){
+        alert("没有选中案例");
+        return;
+    }
+    const item = currentViewCase;
+    let text = `【案例】${item.title}\r\n撰稿人：${item.author||"未填写"}\r\n分类：${item.sourceType}\r\n史料出处：${item.sourceNote}\r\n\r\n【案例正文】\r\n${item.content}\r\n\r\n【个人点评与深度见解】\r\n${item.comment}\r\n\r\n【纪检监察现实启示】\r\n${item.revelation}`;
+    navigator.clipboard.writeText(text).then(()=>{
+        alert("✅本条案例已复制到剪贴板，可以粘贴到Word！");
+    }).catch(()=>{
+        alert("复制失败，请手动全选复制文本");
+    })
+}
+
+// 导出完整JSON备份
+function exportBackupJson(){
+    const backup = {
+        official:getArr(STORAGE_KEY.official),
+        updateLog:getArr(STORAGE_KEY.updateLog),
+        studyNote:localStorage.getItem(STORAGE_KEY.studyNote)||"",
+        exportAt:getTodayStr()
+    };
+    const jsonStr = JSON.stringify(backup,null,2);
+    downloadFile(jsonStr,"廉政案例库_完整备份.json","application/json");
+}
+
+// 导入JSON备份
+function importBackupJson(){
+    const fileInput = document.getElementById("import-file");
+    const file = fileInput.files[0];
+    if(!file){
+        alert("请选择json备份文件");
+        return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e){
+        try{
+            const obj = JSON.parse(e.target.result);
+            if(!obj.official){
+                alert("备份文件格式不正确");
+                return;
+            }
+            if(!confirm("导入会覆盖当前所有本地数据，确认继续？")) return;
+            localStorage.setItem(STORAGE_KEY.official, JSON.stringify(obj.official));
+            localStorage.setItem(STORAGE_KEY.updateLog, JSON.stringify(obj.updateLog||[]));
+            localStorage.setItem(STORAGE_KEY.studyNote, obj.studyNote||"");
+            alert("✅导入备份成功，页面将刷新");
+            window.location.reload();
+        }catch(err){
+            alert("文件解析失败，不是合法备份json");
+        }
+    }
+    reader.readAsText(file);
+}
+
+// 通用下载工具
+function downloadFile(content,filename,mime){
+    const blob = new Blob([content],{type:mime});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(a.href);
+}
+
+function initStorage(){
+    if(!localStorage.getItem(STORAGE_KEY.official)){
+        const demoOfficial = getDefaultCaseArray();
+        localStorage.setItem(STORAGE_KEY.official, JSON.stringify(demoOfficial));
+    }
+    if(!localStorage.getItem(STORAGE_KEY.updateLog)) localStorage.setItem(STORAGE_KEY.updateLog, JSON.stringify([]));
+    if(!localStorage.getItem(STORAGE_KEY.studyNote)) localStorage.setItem(STORAGE_KEY.studyNote, "");
+}
+
+function getArr(key){
+    return JSON.parse(localStorage.getItem(key)) || [];
+}
+function setArr(key,arr){
+    localStorage.setItem(key, JSON.stringify(arr));
+}
+
+function addUpdateLog(text){
+    const log=getArr(STORAGE_KEY.updateLog);
+    log.push({time:getTodayStr(),text:text});
+    setArr(STORAGE_KEY.updateLog,log);
+}
+
+function switchPage(pageId){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById(pageId).classList.add("active");
+    if(pageId === "page-case") renderCaseList();
+    if(pageId === "page-submit") renderSubmitPage();
+    if(pageId === "page-about") renderAbout();
+    if(pageId === "page-study"){
+        document.getElementById("study-note").value = localStorage.getItem(STORAGE_KEY.studyNote)||"";
+    }
+}
+
+function buildCaseCard(item){
+    let tagClass = "tag";
+    if(item.sourceType==="传统廉洁典故") tagClass+=" traditional";
+    if(item.sourceType==="近现代红色") tagClass+=" red";
+    if(item.sourceType==="新时代典型") tagClass+=" newera";
+    return `
+        <div class="card">
+            <h3>${item.title}</h3>
+            <span class="${tagClass}">${item.sourceType}</span>
+            <span class="tag">${item.format}</span>
+            <div>收录时间：${item.createTime}</div>
+            <div>撰稿人：${item.author||"未填写"}</div>
+            <br>
+            <button onclick="openCaseDetail(${item.id})">查看完整</button>
+        </div>
+    `;
+}
+
+function renderCaseList(){
+    const sourceVal = document.getElementById("filter-source").value;
+    const formatVal = document.getElementById("filter-format").value;
+    const keyword = document.getElementById("search-input").value.trim().toLowerCase();
+    let list = getArr(STORAGE_KEY.official);
+
+    if(sourceVal !== "all") list = list.filter(i=>i.sourceType === sourceVal);
+    if(formatVal !== "all") list = list.filter(i=>i.format === formatVal);
+    if(keyword){
+        list = list.filter(i=> i.title.toLowerCase().includes(keyword) || i.content.toLowerCase().includes(keyword));
+    }
+    const wrap = document.getElementById("case-list");
+    wrap.innerHTML = "";
+    if(list.length===0){
+        wrap.innerHTML="<p style='padding:20px;'>暂无案例，请前往投稿专区提交案例</p>";
+        return;
+    }
+    list.forEach(item=>{
+        wrap.innerHTML += buildCaseCard(item);
+    });
+}
+
+function openCaseDetail(id){
+    const all = getArr(STORAGE_KEY.official);
+    const item = all.find(x=>x.id===id);
+    if(!item) return;
+    currentViewCase = item;
+    document.getElementById("case-list").classList.add("hidden");
+    document.getElementById("case-detail").classList.remove("hidden");
+    const html = `
+        <h2 style="margin-bottom:12px;">${item.title}</h2>
+        <div class="tag">分类：${item.sourceType}</div>
+        <div class="tag">形式：${item.format}</div>
+        <p><strong>收录时间：</strong>${item.createTime}</p>
+        <p><strong>撰稿人：</strong>${item.author||"未填写"}</p>
+        <p><strong>史料核实说明：</strong>${item.sourceNote}</p>
+        <hr style="margin:18px 0;">
+        <h4>案例正文</h4>
+        <p>${item.content}</p>
+        <hr style="margin:18px 0;">
+        <h4>个人点评与深度见解</h4>
+        <p>${item.comment}</p>
+        <hr style="margin:18px 0;">
+        <h4>纪检监察现实启示</h4>
+        <p>${item.revelation}</p>
+    `;
+    document.getElementById("detail-content").innerHTML = html;
+}
+function closeCaseDetail(){
+    document.getElementById("case-detail").classList.add("hidden");
+    document.getElementById("case-list").classList.remove("hidden");
+    currentViewCase = null;
+}
+
+function submitCase(){
+    const author = document.getElementById("form-author").value.trim();
+    const title = document.getElementById("form-title").value.trim();
+    const sourceType = document.getElementById("form-source").value;
+    const format = document.getElementById("form-format").value;
+    const sourceNote = document.getElementById("form-source-note").value.trim();
+    const content = document.getElementById("form-content").value.trim();
+    const comment = document.getElementById("form-comment").value.trim();
+    const revelation = document.getElementById("form-revelation").value.trim();
+    if(!title || !content){
+        alert("标题与案例正文不能为空");
+        return;
+    }
+    const official=getArr(STORAGE_KEY.official);
+    const newItem = {
+        id: Date.now(),
+        title,
+        author,
+        sourceType,
+        format,
+        sourceNote,
+        content,
+        comment,
+        revelation,
+        createTime: getTodayStr()
+    };
+    official.push(newItem);
+    setArr(STORAGE_KEY.official, official);
+    addUpdateLog(`新提交案例入库：${title}，撰稿人：${author||"匿名"}`);
+    document.getElementById("form-author").value = "";
+    document.getElementById("form-title").value = "";
+    document.getElementById("form-source-note").value = "";
+    document.getElementById("form-content").value = "";
+    document.getElementById("form-comment").value = "";
+    document.getElementById("form-revelation").value = "";
+    alert("提交成功！案例已经直接存入核心案例库（仅保存在本机浏览器）");
+    renderSubmitPage();
+}
+
+function renderSubmitPage(){
+    const logArr = getArr(STORAGE_KEY.updateLog);
+    const logWrap = document.getElementById("update-log");
+    logWrap.innerHTML = "";
+    if(logArr.length ===0){
+        logWrap.innerHTML="<p>暂无更新记录</p>";
+    }else{
+        logArr.forEach(l=>{
+            logWrap.innerHTML += `<div class="log-item">${l.time}｜${l.text}</div>`;
+        })
+    }
+}
+
+function saveStudyNote(){
+    const note = document.getElementById("study-note").value;
+    localStorage.setItem(STORAGE_KEY.studyNote, note);
+    alert("笔记已保存至本地浏览器");
+}
+
+function renderAbout(){
+    const official = getArr(STORAGE_KEY.official);
+    document.getElementById("stat-info").innerHTML = `
+        <p>正式入库案例总数：${official.length}</p>
+    `;
+}
+
+document.getElementById("filter-source").addEventListener("change", renderCaseList);
+document.getElementById("filter-format").addEventListener("change", renderCaseList);
+document.getElementById("search-input").addEventListener("input", renderCaseList);
+
+document.querySelectorAll("nav a").forEach(a=>{
+    a.addEventListener("click", function(e){
+        e.preventDefault();
+        const pid = this.getAttribute("data-page");
+        switchPage(pid);
+    })
+})
+
+window.onload = function(){
+    initStorage();
+}
+</script>
+</body>
+</html>
